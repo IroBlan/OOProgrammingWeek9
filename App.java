@@ -19,26 +19,44 @@ public class App
 
         //simulate asphalt race
         RallyRaceResult race1 = new RallyRaceResult("Rally Finland", "Jyväskylä");
+        race1.recordResult(driver1,30);
+        race1.recordResult(driver2,20);
+        race1.recordResult(driver3,50);
         manager.addRaceResult(race1);
 
         //simulate gravel race
         GravelCar car4 = new GravelCar("k","l",1100,20);
         driver1.setcar(car4);
         RallyRaceResult race2 = new RallyRaceResult("Monte Carlo Rally", "Monaco");
+        race2.recordResult(driver1,90);
+        race2.recordResult(driver2,30);
+        race2.recordResult(driver3,25);
         manager.addRaceResult(race2);
 
         List<Driver> currentDrivers= manager.getDriverStandings();
-        System.out.println(currentDrivers);
+        System.out.println("==== DRIVERS STANDINGS =====");
+        System.out.println("Position 1: "+currentDrivers.get(0).getName()+" ("+currentDrivers.get(0).getCountry()+"), points: "+currentDrivers.get(0).getPoints());
+        System.out.println("Position 2: "+currentDrivers.get(1).getName()+" ("+currentDrivers.get(1).getCountry()+"), points: "+currentDrivers.get(1).getPoints());
+        System.out.println("Position 3: "+currentDrivers.get(2).getName()+" ("+currentDrivers.get(2).getCountry()+"), points: "+currentDrivers.get(2).getPoints());
+        System.out.println("");
+        
+        Driver leader = manager.getLeadingDriver();
+        System.out.println("===== CHAMPIONSHIP LEADER ====\n"+leader.getName()+", points: "+leader.getPoints()+"\n");
+
+        System.out.println("==== RACE RESULTS ====");
+        List<Driver> results = race1.getResults();
+        System.out.println("Race: Rally Finland (Jyväskylä)");
+        for (int i =0; i < results.size(); i++){
+            int a=i+1;
+            System.out.println("Position "+ a +": "+results.get(i).getName());
+        }
+        System.out.println("");
+        List<Driver> results2 = race2.getResults();
+        System.out.println("Race: Monte Carlo Rally (Monaco)");
+        for (int i =0; i < results2.size(); i++){
+            int a = i+1;
+            System.out.println("Position "+ a +": "+results2.get(i).getName());
+        }
+        System.out.println("");
     }
-
-    
-
-    /*
-     * 1. Creates and configures the ChampionshipManager singleton
-    2. Create and register drivers with appropriate cars
-    3. Simulate at least two races with different surfaces
-    4. Display championship standings, statistics, and race results
-    5. Demonstrate car switching between races
-    6. Show performance calculations for different car types
-     */
 }

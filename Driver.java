@@ -1,9 +1,4 @@
 package carrace;
-/*
-     * Create a Driver class with properties for name, country, and total points
-    • Implement appropriate getters and setters
-    • Include a method to add points to a driver
-     */
 
 public class Driver {
     private String name;

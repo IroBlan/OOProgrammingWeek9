@@ -42,11 +42,13 @@ public class ChampionshipManager {
     public static List<Driver> getDriverStandings(){
         ChampionshipManager manager = getInstance();
         List<Driver> currentDrivers=manager.drivers;
-        for (int i =0; i < currentDrivers.size() -i -1; i++){
+        for (int i =0; i < currentDrivers.size() -1; i++){
             for (int j= 0; j < currentDrivers.size() -1; j++){
-                Driver temporary= currentDrivers.get(j);
-                currentDrivers.set(j, currentDrivers.get(j+1));
-                currentDrivers.set(j + 1, temporary);
+                if (currentDrivers.get(j).getPoints() < currentDrivers.get(j + 1).getPoints()) {
+                    Driver temporary= currentDrivers.get(j);
+                    currentDrivers.set(j, currentDrivers.get(j+1));
+                    currentDrivers.set(j + 1, temporary);
+                }
             }
         }
         return currentDrivers;
